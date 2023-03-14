@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 5338066376063879360}
   - component: {fileID: 5338066376063879371}
   - component: {fileID: 5338066376063879365}
-  - component: {fileID: 5338066376063879366}
+  - component: {fileID: 691084130159241243}
   - component: {fileID: 5338066376063879367}
   - component: {fileID: 5338066376063879364}
   - component: {fileID: 5338066376063879370}
@@ -219,7 +219,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5338066376063879366
+--- !u!114 &691084130159241243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5338066376063879361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60622f03649a94946b5515f643d7957a, type: 3}
+  m_Script: {fileID: 11500000, guid: 92157c5a1b88e944b9178d7e6aef5130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5338066376063879367
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28a34873b42a94f9397fdd6a838907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunEndPointTransform: {fileID: 5338066375982290992}
+  shootEndPointTransform: {fileID: 0}
   bulletFX: {fileID: 1836995898272716152}
   EnableCrosshair: 1
   cursorTexture: {fileID: 2800000, guid: 1695e662d593fff4cb1997b040a0f7f3, type: 3}

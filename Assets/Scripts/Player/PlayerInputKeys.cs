@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Shoot;
 
 public class PlayerInputKeys : MonoBehaviour
 {
     private IMoveVector moveInterface;
+
     private AnimationControl animControl;
     private Vector3 direction;
 
@@ -39,15 +42,7 @@ public class PlayerInputKeys : MonoBehaviour
 
     private void DetectMovement()
     {
-        if (direction != Vector3.zero)
-        {
-            animControl.IsMoving();
-        }
-        else
-        {
-            animControl.IsIdle();
-        }
+        if (direction != Vector3.zero) { animControl.IsMoving(); }
+        else { animControl.IsIdle(); }
     }
-
-    //note: could get rid of update and use events
 }
