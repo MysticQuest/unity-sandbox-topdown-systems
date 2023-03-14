@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5338066376063879360}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5338066375445853774
 GameObject:
@@ -179,6 +179,8 @@ GameObject:
   - component: {fileID: 5338066376063879371}
   - component: {fileID: 5338066376063879365}
   - component: {fileID: 3594054609420772098}
+  - component: {fileID: 7703920176158372181}
+  - component: {fileID: 4988583264587800912}
   - component: {fileID: 691084130159241243}
   - component: {fileID: 5338066376063879367}
   - component: {fileID: 3885363707492099165}
@@ -204,8 +206,8 @@ Transform:
   m_Children:
   - {fileID: 5338066376293641582}
   - {fileID: 5338066377010430584}
-  - {fileID: 579268875313626293}
   - {fileID: 5338066376736205764}
+  - {fileID: 579268875313626293}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -265,6 +267,33 @@ MonoBehaviour:
   EnableCrosshair: 1
   cursorTexture: {fileID: 2800000, guid: 1695e662d593fff4cb1997b040a0f7f3, type: 3}
   cursorMode: 0
+--- !u!114 &7703920176158372181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5338066376063879361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52ba3c7f56d1604a9e06bcfe56d8a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilitiesData: {fileID: 11400000, guid: aa702d16da2457a46b8752d62c9d1b92, type: 2}
+  selectedAbility: {fileID: 0}
+--- !u!114 &4988583264587800912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5338066376063879361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09c85bc4df3ddc4487b9b0858c352d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 5338066375982290992}
 --- !u!114 &691084130159241243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92157c5a1b88e944b9178d7e6aef5130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseObject: {fileID: 0}
+  mouseObject: {fileID: 579268875313626293}
 --- !u!114 &5338066376063879367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectThatShoots: {fileID: 5338066375982290992}
-  shootTool: {fileID: 5338066375982290992}
+  shootTool: {fileID: 5338066376293641582}
 --- !u!114 &5338066376063879370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,7 +600,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5338066376063879360}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &5338066376736205771
 SphereCollider:

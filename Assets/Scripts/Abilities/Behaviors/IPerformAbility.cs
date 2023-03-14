@@ -7,5 +7,6 @@ public interface IPerformAbility
     /// <summary>
     /// Interface that implements a behavior class
     /// </summary>
-    void PerformAbility();
+    /// <param name="target"> Ability target </param>
+    void PerformAbility(Vector3 target);
 }

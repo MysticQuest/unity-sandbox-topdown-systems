@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AbilitiesData
   m_EditorClassIdentifier: 
   abilityPrefabs:
-  - {fileID: 4571228207254569153, guid: 661d279cb1c3ed64c9c35a0bd1f9079a, type: 3}
   - {fileID: 2660864412750815526, guid: ed17c6959738a8742ba2d151f1c87c65, type: 3}
+  - {fileID: 4571228207254569153, guid: 661d279cb1c3ed64c9c35a0bd1f9079a, type: 3}

@@ -16,12 +16,11 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 mouseWorldPos;
 
-    private ShootEffect shootE;
-
     private void Awake()
     {
         iMoveVector = GetComponent<IMoveVector>();
         iAim = GetComponent<IAim>();
+        iPerformAbility = GetComponent<IPerformAbility>();
         playerInput = new PlayerInput();
 
         if (!mouseObject)
@@ -38,23 +37,27 @@ public class PlayerController : MonoBehaviour
         aim = playerInput.Player.Aim;
         aim.Enable();
 
-        //playerInput.Player.Shoot.performed += PerformAbility();
-        //playerInput.Player.Shoot.Enable();
+        playerInput.Player.Shoot.performed += PerformAbility;
+        playerInput.Player.Shoot.Enable();
     }
 
     private void FixedUpdate()
     {
         iMoveVector.SetVector(movement.ReadValue<Vector2>());
-
-        mouseWorldPos = Camera.main.ScreenToWorldPoint(aim.ReadValue<Vector2>());
-        mouseWorldPos.z = 0;
-        mouseObject.position = mouseWorldPos;
+        MouseToWorldPosition();
         iAim.Aim(mouseWorldPos);
+        mouseObject.position = mouseWorldPos;
     }
 
-    private Action<InputAction.CallbackContext> PerformAbility()
+    private void MouseToWorldPosition()
     {
-        throw new NotImplementedException();
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(aim.ReadValue<Vector2>());
+        mouseWorldPos.z = 0;
+    }
+
+    private void PerformAbility(InputAction.CallbackContext context)
+    {
+        iPerformAbility.PerformAbility(mouseWorldPos);
     }
 
     private void OnDisable()

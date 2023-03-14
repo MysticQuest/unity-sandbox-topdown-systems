@@ -2099,11 +2099,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1631945699 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5338066376293641582, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
-  m_PrefabInstance: {fileID: 2139269330}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1660641589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,14 +2358,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 579268875313626293, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3885363707492099165, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
-      propertyPath: shootTool
-      value: 
-      objectReference: {fileID: 1631945699}
     - target: {fileID: 5338066376063879360, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2419,18 +2406,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5338066376063879369, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
-      propertyPath: bulletFX
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5338066376063879370, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
-      propertyPath: isMoving
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5338066376736205764, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5338066376063879366, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd45c43b3d7fa04eb4246d562aea01e, type: 3}
