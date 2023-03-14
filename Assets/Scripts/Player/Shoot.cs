@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility;
+//using Utility;
 
 public class Shoot : MonoBehaviour
 {
@@ -53,14 +53,14 @@ public class Shoot : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (true)
         {
             animControl.IsShooting();
 
             OnShoot?.Invoke(this, new OnShootEventArgs
             {
                 shootEndPointPosition = shootEndPointTransform.position,
-                shootPosition = Utilities.GetMousePosition(),
+                //shootPosition = Utilities.GetMousePosition(),
             });
         }
     }

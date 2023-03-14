@@ -1,18 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility;
 
-public class PlayerAim : MonoBehaviour
+public class PlayerMouseAim : MonoBehaviour, IAim
 {
     [Header("Aim Options")]
     public Transform objectThatShoots;
-    public GameObject aimTarget;
     public Transform shootTool;
+    private Vector3 aimDirection;
 
     private Vector3 aimTargetTransform;
-    private Vector3 aimDirection;
-    private bool isPlayer = false;
 
     private float angle;
 
@@ -31,42 +28,29 @@ public class PlayerAim : MonoBehaviour
         {
             shootTool = transform.Find("aim/hand");
         }
-
-        if (this.name == "Player")
-        {
-            isPlayer = true;
-        }
     }
 
-    private void Update()
+    //private void Update()
+    //{
+    //    Aim();
+    //    Flip();
+    //}
+
+    public void Aim(Vector3 target)
     {
-        Aim();
-        Flip();
-    }
-
-    private void Aim()
-    {
-        if (isPlayer)
-        {
-            aimTargetTransform = Utilities.GetMousePosition();
-        }
-        else
-        {
-            aimTargetTransform = aimTarget.transform.position;
-        }
-
-
-        aimDirection = (aimTargetTransform - objectThatShoots.position).normalized;
+        aimDirection = (target - objectThatShoots.position).normalized;
         angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         Vector3 rotationVector = Vector3.zero;
         rotationVector.z = angle;
         shootTool.eulerAngles = rotationVector;
+
+        Flip(target);
     }
 
-    private void Flip()
+    private void Flip(Vector3 target)
     {
         Vector3 lookDir = Vector3.one;
-        lookDir.x = Mathf.Sign(aimTargetTransform.x - transform.position.x);
+        lookDir.x = Mathf.Sign(target.x - transform.position.x);
         if (lookDir.x == 0) { return; }
         mainBody.localScale = lookDir;
 
@@ -75,3 +59,4 @@ public class PlayerAim : MonoBehaviour
         shootTool.localScale = weaponDir;
     }
 }
+
