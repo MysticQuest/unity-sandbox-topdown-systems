@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5569551496045739305}
   - component: {fileID: -259778481958379410}
   m_Layer: 0
-  m_Name: Manaball
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d2038a4c661844fb5b19953ae70476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 20

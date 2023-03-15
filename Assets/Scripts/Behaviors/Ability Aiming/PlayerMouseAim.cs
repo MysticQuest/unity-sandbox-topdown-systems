@@ -30,12 +30,6 @@ public class PlayerMouseAim : MonoBehaviour, IAim
         }
     }
 
-    //private void Update()
-    //{
-    //    Aim();
-    //    Flip();
-    //}
-
     public void Aim(Vector3 target)
     {
         aimDirection = (target - objectThatShoots.position).normalized;

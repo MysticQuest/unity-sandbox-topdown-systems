@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaBall : Projectile
+public class Ball : Projectile
 {
 
     private void Start()
