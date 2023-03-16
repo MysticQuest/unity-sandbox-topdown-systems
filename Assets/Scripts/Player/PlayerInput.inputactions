@@ -15,9 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Aim",
+                    "name": "AimGamepad",
                     "type": "Value",
                     "id": "20573913-2f08-440d-acb1-9e0264c77633",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "AimMouse",
+                    "type": "Value",
+                    "id": "9095a0fd-c5f9-417e-9a07-e7bf7870a0f0",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -107,18 +116,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6115ef65-12b5-4224-92bf-efea016ee919",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Aim",
+                    "action": "AimGamepad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -141,6 +139,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf1314c7-9bc7-47ef-9874-1ddc67fcab09",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

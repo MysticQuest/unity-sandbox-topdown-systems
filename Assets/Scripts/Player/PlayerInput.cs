@@ -37,9 +37,18 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Aim"",
+                    ""name"": ""AimGamepad"",
                     ""type"": ""Value"",
                     ""id"": ""20573913-2f08-440d-acb1-9e0264c77633"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AimMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""9095a0fd-c5f9-417e-9a07-e7bf7870a0f0"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -129,18 +138,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6115ef65-12b5-4224-92bf-efea016ee919"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""AimGamepad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -165,6 +163,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf1314c7-9bc7-47ef-9874-1ddc67fcab09"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -174,7 +183,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+        m_Player_AimGamepad = m_Player.FindAction("AimGamepad", throwIfNotFound: true);
+        m_Player_AimMouse = m_Player.FindAction("AimMouse", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
     }
 
@@ -236,14 +246,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_AimGamepad;
+    private readonly InputAction m_Player_AimMouse;
     private readonly InputAction m_Player_Shoot;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        public InputAction @AimGamepad => m_Wrapper.m_Player_AimGamepad;
+        public InputAction @AimMouse => m_Wrapper.m_Player_AimMouse;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -257,9 +269,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                @AimGamepad.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGamepad;
+                @AimGamepad.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGamepad;
+                @AimGamepad.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimGamepad;
+                @AimMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimMouse;
+                @AimMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimMouse;
+                @AimMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimMouse;
                 @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
@@ -270,9 +285,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
+                @AimGamepad.started += instance.OnAimGamepad;
+                @AimGamepad.performed += instance.OnAimGamepad;
+                @AimGamepad.canceled += instance.OnAimGamepad;
+                @AimMouse.started += instance.OnAimMouse;
+                @AimMouse.performed += instance.OnAimMouse;
+                @AimMouse.canceled += instance.OnAimMouse;
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
@@ -283,7 +301,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
+        void OnAimGamepad(InputAction.CallbackContext context);
+        void OnAimMouse(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
     }
 }
