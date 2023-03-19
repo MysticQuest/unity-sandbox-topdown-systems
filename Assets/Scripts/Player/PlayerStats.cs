@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInitializer : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
+    public FloatReference maxHp;
+    public FloatReference moveSpeed;
+
     private void Awake()
     {
         
