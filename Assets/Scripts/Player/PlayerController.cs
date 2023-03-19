@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private InputAction aimM;
     private InputAction aimG;
 
-    private Vector2 aimVector;
+    private Vector2 inputAimM;
+    private Vector2 aimVectorG;
     private Vector2 cursorVector;
 
     private void Awake()
@@ -58,27 +59,26 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         iMoveVector.SetVector(movement.ReadValue<Vector2>());
-        iAim.Aim(mouseObject.position);
+
+        mouseObject.position = ToWorldPosition(inputAimM);
+        iAim.Aim(ToWorldPosition(inputAimM));
     }
 
     private void AimingMouse(InputAction.CallbackContext obj)
     {
-        Debug.Log("Mouse Input");
-
-        aimVector = obj.ReadValue<Vector2>();
-        mouseObject.position = ToWorldPosition(aimVector);
+        inputAimM = obj.ReadValue<Vector2>();
     }
     private void AimingGamepad (InputAction.CallbackContext obj)
     {
         Debug.Log("Gamepad Input");
 
-        aimVector = obj.ReadValue<Vector2>().normalized;
-        aimVector.x = aimVector.x * 10 * Time.deltaTime;
-        aimVector.y = aimVector.y * 10 * Time.deltaTime;
+        aimVectorG = obj.ReadValue<Vector2>().normalized;
+        aimVectorG.x = aimVectorG.x * 10 * Time.deltaTime;
+        aimVectorG.y = aimVectorG.y * 10 * Time.deltaTime;
 
         cursorVector = (Vector2)mouseObject.position;
-        cursorVector.x += aimVector.x;
-        cursorVector.y += aimVector.y;
+        cursorVector.x += aimVectorG.x;
+        cursorVector.y += aimVectorG.y;
 
         MousePositioning();
     }
@@ -87,18 +87,18 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 mousepos = Camera.main.WorldToScreenPoint(cursorVector); // 3D worldpos into 2D
         // 'feature' workaround: https://forum.unity.com/threads/inputsystem-reporting-wrong-mouse-position-after-warpcursorposition.929019/
-        InputSystem.QueueDeltaStateEvent(Mouse.current.position, (Vector2)mousepos);   // required 8 bytes, not 12!
+        //InputSystem.QueueDeltaStateEvent(Mouse.current.position, (Vector2)mousepos);   // required 8 bytes, not 12!
         //InputState.Change(Mouse.current.position, (Vector2)mousepos);
 #if !UNITY_EDITOR
         // bug workaround : https://forum.unity.com/threads/mouse-y-position-inverted-in-build-using-mouse-current-warpcursorposition.682627/#post-5387577
-        mousepos.Set(mousepos.x, Screen.height - mousepos.y, mousepos.z);
+        // mousepos.Set(mousepos.x, Screen.height - mousepos.y, mousepos.z);
 #endif
         Mouse.current.WarpCursorPosition(mousepos);
     }
 
     private Vector2 ToWorldPosition(Vector2 v2)
     {
-        return Camera.main.ScreenToWorldPoint(new Vector3(v2.x, v2.y, -Camera.main.transform.position.z));
+        return Camera.main.ScreenToWorldPoint(new Vector3(v2.x, v2.y, 0));
     }
 
     private void PerformAbility(InputAction.CallbackContext obj)
