@@ -653,9 +653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faed7ab5f931afa46893d138e3cb84c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
-  aiming: {fileID: 0}
-  performAbility: {fileID: 0}
   cineImpulse: {fileID: 519420034}
 --- !u!1 &519420028
 GameObject:

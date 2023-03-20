@@ -4,7 +4,31 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-    public static class DependenciesContext
+[DefaultExecutionOrder(-1)]
+public abstract class DependenciesContext : MonoBehaviour
+{
+    protected DependenciesCollection dependenciesCollection = new DependenciesCollection();
+    private DependenciesProvider dependenciesProvider;
+
+
+    private void Awake()
     {
-        public static DependenciesCollection Dependencies { get; } = new DependenciesCollection();
+        DontDestroyOnLoad(gameObject);
+        Setup();
+
+        dependenciesProvider = new DependenciesProvider(dependenciesCollection);
+
+        var children = GetComponentsInChildren<MonoBehaviour>(true);
+        foreach (var child in children)
+        {
+            dependenciesProvider.Inject(child);
+        }
+
+        Configure();
     }
+
+    protected abstract void Setup();
+
+    protected abstract void Configure();
+
+}
