@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
@@ -23,12 +24,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 aimVectorG;
     private Vector2 cursorVector;
 
-    private MoveVelocity moveDependency = null;
-    private PlayerMouseAim aimDependency = null;
-    private CreateAbility abilityDependency = null;
+    private CinemachineImpulseSource cineImpulse = null;
 
     private void Awake()
     {
+        cineImpulse = DependenciesContext.Dependencies.Get<CinemachineImpulseSource>();
+
         gamepad = Gamepad.current;
 
         iMoveVector = GetComponent<IMoveVector>();
@@ -108,6 +109,7 @@ public class PlayerController : MonoBehaviour
     private void PerformAbility(InputAction.CallbackContext obj)
     {
         iPerformAbility.PerformAbility(mouseObject.position);
+        cineImpulse.GenerateImpulse();
     }
 
     private void OnDisable()
