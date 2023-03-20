@@ -1,40 +1,63 @@
 using Cinemachine;
 using UnityEngine;
 
-public class DependenciesBootstrap : MonoBehaviour
+[DefaultExecutionOrder(-1)]
+public abstract class DependenciesBootstrap : MonoBehaviour
 {
-    [SerializeField]
-    private CinemachineImpulseSource cineImpulse = default;
+    protected DependenciesCollection dependenciesCollection = new DependenciesCollection();
+    private DependenciesProvider dependenciesProvider;
+
 
     private void Awake()
     {
-        // Fetching an instance of this class
-        // (any class above Object on the mono inheritance tree cannot be instantiated)
+        DontDestroyOnLoad(gameObject);
+        Setup();
 
-        DependenciesContext.Dependencies.Add(new Dependency
+        dependenciesProvider = new DependenciesProvider(dependenciesCollection);
+
+        var children = GetComponentsInChildren<MonoBehaviour>(true);
+        foreach (var child in children)
         {
-            Type = typeof(DependencyTestClass),
-            Factory = () => new DependencyTestClass(),
-            IsSingleton = false
-        });
+            dependenciesProvider.Inject(child);
+        }
 
-        // "Singleton" (not really in this case - it just exists in the scene already)
-        // but in general this would be the case for fetching singletons)
-
-        DependenciesContext.Dependencies.Add(new Dependency
-        {
-            Type = typeof(CinemachineImpulseSource),
-            Factory = () => cineImpulse,
-            IsSingleton = true
-        });
-
-        // Instantiation fetching for prefabs with dependencies
-
-        //DependenciesContext.Dependencies.Add(new Dependency
-        //{
-        //    Type = typeof(CinemachineImpulseSource),
-        //    Factory = () => Instantiate(cineImpulse).GetComponent<CinemachineImpulseSource>(),
-        //    IsSingleton = true
-        //});
+        Configure();
     }
+
+    protected abstract void Setup();
+
+    protected abstract void Configure();
+
+
+// OBSOLETE (old injection)
+
+//    // Fetching an instance of this class
+//    // (any class above Object on the mono inheritance tree cannot be instantiated)
+
+//    DependenciesContext.Dependencies.Add(new Dependency
+//        {
+//            Type = typeof(DependencyTestClass),
+//            Factory = () => new DependencyTestClass(),
+//            IsSingleton = false
+//        });
+
+//// "Singleton" (not really in this case - it just exists in the scene already)
+//// but in general this would be the case for fetching singletons)
+
+//DependenciesContext.Dependencies.Add(new Dependency
+//{
+//    Type = typeof(CinemachineImpulseSource),
+//    Factory = () => cineImpulse,
+//    IsSingleton = true
+//});
+
+//        // Instantiation fetching for prefabs with dependencies
+
+//        //DependenciesContext.Dependencies.Add(new Dependency
+//        //{
+//        //    Type = typeof(CinemachineImpulseSource),
+//        //    Factory = () => Instantiate(cineImpulse).GetComponent<CinemachineImpulseSource>(),
+//        //    IsSingleton = true
+//        //});
+
 }

@@ -24,14 +24,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 aimVectorG;
     private Vector2 cursorVector;
 
+    [InjectField]
     private DependencyTestClass depTest = null;
+    [InjectField]
     private CinemachineImpulseSource cineImpulse = null;
 
     private void Awake()
     {
-        depTest = DependenciesContext.Dependencies.Get<DependencyTestClass>();
-        cineImpulse = DependenciesContext.Dependencies.Get<CinemachineImpulseSource>();
-
         gamepad = Gamepad.current;
 
         iMoveVector = GetComponent<IMoveVector>();
