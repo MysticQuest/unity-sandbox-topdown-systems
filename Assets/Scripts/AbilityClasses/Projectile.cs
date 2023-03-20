@@ -26,8 +26,8 @@ public abstract class Projectile : Ability
 
     public override void  DisplayInfo()
     {
-        base.DisplayInfo();
-        Debug.Log("Type: Projectile");
+        //base.DisplayInfo();
+        //Debug.Log("Type: Projectile");
     }
 
     public void Move()

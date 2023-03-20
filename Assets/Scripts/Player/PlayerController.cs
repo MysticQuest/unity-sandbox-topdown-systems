@@ -24,10 +24,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 aimVectorG;
     private Vector2 cursorVector;
 
+    private DependencyTestClass depTest = null;
     private CinemachineImpulseSource cineImpulse = null;
 
     private void Awake()
     {
+        depTest = DependenciesContext.Dependencies.Get<DependencyTestClass>();
         cineImpulse = DependenciesContext.Dependencies.Get<CinemachineImpulseSource>();
 
         gamepad = Gamepad.current;
@@ -110,6 +112,7 @@ public class PlayerController : MonoBehaviour
     {
         iPerformAbility.PerformAbility(mouseObject.position);
         cineImpulse.GenerateImpulse();
+        depTest.Yell();
     }
 
     private void OnDisable()
