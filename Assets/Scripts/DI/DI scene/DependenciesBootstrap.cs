@@ -19,8 +19,7 @@ public class DependenciesBootstrap : DependenciesContext
             IsSingleton = false
         });
 
-        // "Singleton" (not really in this case - it just exists in the scene already)
-        // but in general this would be the case for fetching singletons)
+        // Fetching the already existing instance from gameobjects
 
         dependenciesCollection.Add(new Dependency
         {
