@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 aimVectorG;
     private Vector2 cursorVector;
 
+    private MoveVelocity moveDependency = null;
+    private PlayerMouseAim aimDependency = null;
+    private CreateAbility abilityDependency = null;
+
     private void Awake()
     {
         gamepad = Gamepad.current;
