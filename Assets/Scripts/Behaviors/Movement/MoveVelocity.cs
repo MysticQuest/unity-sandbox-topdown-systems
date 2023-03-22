@@ -1,30 +1,25 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
-public class MoveVelocity : MonoBehaviour, IMoveVector
+public abstract class MoveVelocity : MonoBehaviour, IMoveVector
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] protected float moveSpeed = 5f;
 
-    private Rigidbody2D rbody;
-    internal Vector3 velocityVector;
+    protected Rigidbody2D rbody;
+    protected Vector3 velocityVector;
 
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
     }
 
-    public void SetVector(Vector3 direction)
+    public virtual void SetVector(Vector3 direction)
     {
-        this.velocityVector = direction.normalized;
         MovePhysics();
     }
 
-    private void MovePhysics()
-    {
-        rbody.velocity = velocityVector * moveSpeed;
-    }
+    protected abstract void MovePhysics();
 
     public Vector3 GetPosition()
     {

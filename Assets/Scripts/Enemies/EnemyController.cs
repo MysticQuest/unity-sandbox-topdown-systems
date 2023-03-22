@@ -17,7 +17,6 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(playerTransform.position);
         iMoveVector.SetVector(playerTransform.position);
     }
 }

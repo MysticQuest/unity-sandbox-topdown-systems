@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
-using UnityEngine.Windows;
 
-public class MoveToTargetVelocity : MoveVelocity, IMoveVector
+public class MoveTowardsVelocity : MoveVelocity, IMoveVector
 {
     public override void SetVector(Vector3 direction)
     {
-        this.velocityVector = direction;
+        this.velocityVector = direction.normalized;
         base.SetVector(direction);
     }
 
     protected override void MovePhysics()
     {
-        rbody.velocity = (velocityVector - transform.position).normalized * moveSpeed;
+        rbody.velocity = velocityVector * moveSpeed;
     }
 }
