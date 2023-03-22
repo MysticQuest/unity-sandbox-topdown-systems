@@ -1,13 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
-public abstract class Projectile : Ability
+public abstract class Projectile : Ability, IPoolableObject
 {
     IMoveVector iMoveVector;
-
     Vector3 direction;
 
+    [SerializeField] protected float lifespan = 2f;
+    protected IObjectPool<Projectile> objectPool;
+    public IObjectPool<Projectile> ObjectPool { set => objectPool = value; }
 
     private void Awake()
     {
@@ -38,5 +40,17 @@ public abstract class Projectile : Ability
     public void SetMoveBehavior(IMoveVector iMoveVector)
     {
         this.iMoveVector = iMoveVector;
+    }
+
+    public void Deactivate()
+    {
+        StartCoroutine(DeactivateRoutine(lifespan));
+    }
+
+    IEnumerator DeactivateRoutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        transform.position = Vector3.zero;
+        objectPool.Release(this);
     }
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
 {
+    [SerializeField]
+    private bool usePooling;
+
     public float manaCost;
 
     public virtual void DisplayInfo()

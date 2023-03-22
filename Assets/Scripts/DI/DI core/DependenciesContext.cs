@@ -13,7 +13,7 @@ public abstract class DependenciesContext : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         Setup();
 
         dependenciesProvider = new DependenciesProvider(dependenciesCollection);

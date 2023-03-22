@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityList : MonoBehaviour
 {
     [SerializeField] AbilitiesData abilitiesData;
-    public GameObject selectedAbility;
+    public Projectile selectedAbility;
 
     private void Awake()
     {

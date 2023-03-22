@@ -98,7 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42a6e3fa86d58f4aa703c4135867448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usePooling: 0
   manaCost: 5
+  lifespan: 2
 --- !u!114 &-259778481958379410
 MonoBehaviour:
   m_ObjectHideFlags: 0
