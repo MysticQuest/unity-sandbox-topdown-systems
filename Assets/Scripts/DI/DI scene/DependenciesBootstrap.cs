@@ -6,6 +6,9 @@ public class DependenciesBootstrap : DependenciesContext
     [SerializeField]
     private CinemachineImpulseSource cineImpulse;
 
+    [SerializeField]
+    private Transform playerTransform;
+
     protected override void Setup()
     {
 
@@ -25,6 +28,13 @@ public class DependenciesBootstrap : DependenciesContext
         {
             Type = typeof(CinemachineImpulseSource),
             Factory = DependencyFactory.FromGameObject(cineImpulse),
+            IsSingleton = true
+        });
+
+        dependenciesCollection.Add(new Dependency
+        {
+            Type = typeof(Transform),
+            Factory = DependencyFactory.FromGameObject(playerTransform),
             IsSingleton = true
         });
 

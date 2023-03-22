@@ -18,7 +18,7 @@ public abstract class DependenciesContext : MonoBehaviour
 
         dependenciesProvider = new DependenciesProvider(dependenciesCollection);
 
-        var children = GetComponentsInChildren<MonoBehaviour>(true);
+        var children = GetComponentsInChildren<Component>(true);
         foreach (var child in children)
         {
             dependenciesProvider.Inject(child);

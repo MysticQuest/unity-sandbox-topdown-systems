@@ -39,11 +39,11 @@ public static class DependencyFactory
         };
     }
 
-    public static Delegate FromGameObject<T>(T instance) where T : MonoBehaviour
+    public static Delegate FromGameObject<T>(T instance) where T : Component
     {
         return (dependencies) =>
         {
-            var children = instance.GetComponentsInChildren<MonoBehaviour>(true);
+            var children = instance.GetComponentsInChildren<Component>(true);
             foreach (var child in children)
             {
                 dependencies.Inject(child);

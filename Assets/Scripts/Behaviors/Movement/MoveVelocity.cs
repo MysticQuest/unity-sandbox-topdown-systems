@@ -44,9 +44,11 @@ public class MoveVelocity : MonoBehaviour, IMoveVector
         return velocityVector;
     }
 
+    // Should be moved
     private void AnimationOnMovement () 
     {
-        if (animControl && velocityVector != Vector3.zero)
+        if (!animControl) { return; }
+        if (velocityVector != Vector3.zero)
         { animControl.IsMoving(); }
         else { animControl.IsIdle(); }
     }
