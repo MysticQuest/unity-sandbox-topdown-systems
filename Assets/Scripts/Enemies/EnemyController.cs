@@ -15,9 +15,9 @@ public class EnemyController : MonoBehaviour
         iMoveVector = GetComponent<IMoveVector>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(playerTransform.position);
+        iMoveVector.SetVector(playerTransform.position);
     }
 }

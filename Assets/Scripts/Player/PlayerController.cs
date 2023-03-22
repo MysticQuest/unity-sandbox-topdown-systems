@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private InputAction aimM;
     private InputAction aimG;
 
+    private AnimationControl animControl;
     private Vector2 inputAimM;
     private Vector2 aimVectorG;
     private Vector2 cursorVector;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         gamepad = Gamepad.current;
 
+        animControl = GetComponent<AnimationControl>();
         iMoveVector = GetComponent<IMoveVector>();
         iAim = GetComponent<IAim>();
         iPerformAbility = GetComponent<IPerformAbility>();
@@ -65,6 +67,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         iMoveVector.SetVector(movement.ReadValue<Vector2>());
+        if (movement.IsPressed()) { animControl.IsMoving(); }
+        else { animControl.IsIdle(); }
 
         mouseObject.position = ToWorldPosition(inputAimM);
         iAim.Aim(ToWorldPosition(inputAimM));

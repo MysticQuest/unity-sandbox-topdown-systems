@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 
-public class MoveVelocity : MonoBehaviour, IMoveVector
+public class MoveToTargetVelocity : MonoBehaviour, IMoveVector
 {
     [SerializeField] private float moveSpeed = 5f;
 
@@ -23,7 +23,7 @@ public class MoveVelocity : MonoBehaviour, IMoveVector
 
     private void MovePhysics()
     {
-        rbody.velocity = velocityVector * moveSpeed;
+        rbody.MovePosition(velocityVector);
     }
 
     public Vector3 GetPosition()

@@ -16,14 +16,17 @@ public class MoveTransform : MonoBehaviour, IMoveVector
     public void SetVector(Vector3 direction)
     {
         this.direction = direction.normalized;
+        MoveTowards();
     }
 
-    private void Update()
+    public void MoveTowards()
     {
         transform.position += direction * moveSpeed * Time.deltaTime;
+    }
 
-        // Stop at pointer
-        //transform.position = Vector3.MoveTowards(transform.position, mouseVector, moveSpeed * Time.deltaTime);
-        //transform.position += keyVector.normalized * moveSpeed * Time.deltaTime;
+    public void MoveTo()
+    {   
+        transform.position = Vector3.MoveTowards(transform.position, direction, moveSpeed * Time.deltaTime);
+        transform.position += direction.normalized * moveSpeed * Time.deltaTime;
     }
 }
