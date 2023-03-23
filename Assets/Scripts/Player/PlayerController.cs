@@ -62,6 +62,9 @@ public class PlayerController : MonoBehaviour
         aimG.Enable();
         aimM.performed += AimingMouse;
         aimG.performed += AimingGamepad;
+
+        playerInput.Player.AbilitySwitch.Enable();
+        playerInput.Player.AbilitySwitch.performed += SwitchAbility;
     }
 
     private void FixedUpdate()
@@ -118,12 +121,18 @@ public class PlayerController : MonoBehaviour
         depTest.Yell();
     }
 
+    private void SwitchAbility(InputAction.CallbackContext obj)
+    {
+        iPerformAbility.SwitchAbility();
+    }
+
     private void OnDisable()
     {
         movement.Disable();
         playerInput.Player.Shoot.Disable();
         aimM.Disable();
         aimG.Disable();
+        playerInput.Player.AbilitySwitch.Disable();
     }
 
 }

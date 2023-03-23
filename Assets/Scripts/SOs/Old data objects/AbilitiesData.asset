@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityPrefabs:
   - {fileID: 5569551496045739305, guid: ed17c6959738a8742ba2d151f1c87c65, type: 3}
-  - {fileID: 5569551496045739305, guid: ed17c6959738a8742ba2d151f1c87c65, type: 3}
+  - {fileID: 8020345992389195939, guid: 953bede5726c5384b87f7b286deff897, type: 3}

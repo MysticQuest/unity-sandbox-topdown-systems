@@ -62,6 +62,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AbilitySwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""d55e6ab7-c8df-4ac6-8f56-fb549533fdb0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,6 +183,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""AimMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""235b827c-5e62-4a0a-a188-46426145e55f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""151205b4-f60e-4a75-9323-21fa35673fb5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AbilitySwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +217,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_AimGamepad = m_Player.FindAction("AimGamepad", throwIfNotFound: true);
         m_Player_AimMouse = m_Player.FindAction("AimMouse", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_AbilitySwitch = m_Player.FindAction("AbilitySwitch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +281,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AimGamepad;
     private readonly InputAction m_Player_AimMouse;
     private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_AbilitySwitch;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -257,6 +290,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @AimGamepad => m_Wrapper.m_Player_AimGamepad;
         public InputAction @AimMouse => m_Wrapper.m_Player_AimMouse;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @AbilitySwitch => m_Wrapper.m_Player_AbilitySwitch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -278,6 +312,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @AbilitySwitch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilitySwitch;
+                @AbilitySwitch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilitySwitch;
+                @AbilitySwitch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilitySwitch;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -294,6 +331,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @AbilitySwitch.started += instance.OnAbilitySwitch;
+                @AbilitySwitch.performed += instance.OnAbilitySwitch;
+                @AbilitySwitch.canceled += instance.OnAbilitySwitch;
             }
         }
     }
@@ -304,5 +344,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnAimGamepad(InputAction.CallbackContext context);
         void OnAimMouse(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnAbilitySwitch(InputAction.CallbackContext context);
     }
 }

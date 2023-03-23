@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2422689608360632093}
   - component: {fileID: 3291810827045317763}
-  - component: {fileID: 5569551496045739305}
+  - component: {fileID: 8020345992389195939}
   - component: {fileID: -259778481958379410}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: f89bf7f819079b04cba7bbee07b6e885, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5569551496045739305
+--- !u!114 &8020345992389195939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,11 +95,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2660864412750815526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42a6e3fa86d58f4aa703c4135867448, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dd6de88de3c49b44ab4b830e8ea0f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usePooling: 1
-  manaCost: 5
+  usePooling: 0
+  manaCost: 0
   lifespan: 2
 --- !u!114 &-259778481958379410
 MonoBehaviour:
@@ -113,4 +113,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d2038a4c661844fb5b19953ae70476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 10

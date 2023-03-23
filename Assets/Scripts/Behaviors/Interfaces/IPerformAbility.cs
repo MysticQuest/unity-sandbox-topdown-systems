@@ -9,4 +9,7 @@ public interface IPerformAbility
     /// </summary>
     /// <param name="target"> Ability target </param>
     void PerformAbility(Vector3 target);
+    
+    //temp
+    void SwitchAbility();
 }
