@@ -22,7 +22,7 @@ public class Pool<T> : UnityEngine.Object
 
         objectPool = new ObjectPool<IPoolableObject>(CreateIPoolableObject,
             OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
-            checkPool, defaultCapacity, maxSize);
+            blueprintClass.CheckPool, blueprintClass.DefaultCapacity, blueprintClass.MaxSize);
     }
 
     private IPoolableObject CreateIPoolableObject()

@@ -6,6 +6,9 @@ using UnityEngine.Pool;
 public interface IPoolableObject
 {
     GameObject gameObject { get; }
+    bool CheckPool { get; }
+    int DefaultCapacity { get; }
+    int MaxSize { get; }
 
     void SetObjectPool(IObjectPool<IPoolableObject> pool);
 }

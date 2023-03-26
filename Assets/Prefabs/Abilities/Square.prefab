@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd6de88de3c49b44ab4b830e8ea0f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usePooling: 0
+  usePooling: 1
   manaCost: 0
   lifespan: 2
 --- !u!114 &-259778481958379410
