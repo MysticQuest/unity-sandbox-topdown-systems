@@ -8,11 +8,7 @@ public abstract class Ability : MonoBehaviour, IPoolableObject
 {
     [SerializeField]
     private bool usePooling;
-    public bool UsePooling
-    {
-        get { return usePooling; }
-        private set { usePooling = value; }
-    }
+    public bool UsePooling { get { return usePooling; } private set { usePooling = value; } }
 
     public float manaCost;
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using System.Runtime.InteropServices;
 
 public class CreateAbility : MonoBehaviour, IPerformAbility
 {
@@ -28,9 +29,20 @@ public class CreateAbility : MonoBehaviour, IPerformAbility
 
     private void InitializePool()
     {
-        // Need to store pool or check if it exists so the a new pool isn't made when switching back
+        pool = FindOrCreatePool();
+        Pool<Ability>.poolList.Add(pool);
+    }
 
-        pool = new Pool<Ability>(abilityList.selectedAbility.gameObject);
+    private Pool<Ability> FindOrCreatePool()
+    {
+        foreach (Pool<Ability> poolInstance in Pool<Ability>.poolList)
+        {
+            if ((Object)poolInstance.GetBlueprint() == abilityList.selectedAbility)
+            {
+                return poolInstance;  
+            }
+        }
+        return new Pool<Ability>(abilityList.selectedAbility);
     }
 
     public void SwitchAbility()

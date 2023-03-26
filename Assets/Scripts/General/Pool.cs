@@ -7,16 +7,18 @@ using UnityEngine.Pool;
 
 public class Pool<T> : UnityEngine.Object
 {
+    public static List<Pool<T>> poolList = new();
     public IObjectPool<IPoolableObject> objectPool { get; private set; }
     [SerializeField] private bool checkPool = true;
     [SerializeField] private int defaultCapacity = 3;
     [SerializeField] private int maxSize = 6;
 
-    private GameObject blueprint;
+    private IPoolableObject blueprintClass;
+    public IPoolableObject GetBlueprint() { return blueprintClass; }
 
-    public Pool(GameObject blueprint)
+    public Pool(IPoolableObject blueprintClass)
     {
-        this.blueprint = blueprint;
+        this.blueprintClass = blueprintClass;
 
         objectPool = new ObjectPool<IPoolableObject>(CreateIPoolableObject,
             OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
@@ -25,12 +27,8 @@ public class Pool<T> : UnityEngine.Object
 
     private IPoolableObject CreateIPoolableObject()
     {
-        T objectInstance = Instantiate(blueprint).GetComponent<T>();
-        //objectInstance.ObjectPool = objectPool;
-        IPoolableObject poolableObject = (IPoolableObject)objectInstance;
-        poolableObject.SetObjectPool(objectPool);
-        //PropertyInfo propInfo = blueprint.GetType().GetProperty("ObjectPool");
-        //propInfo.SetValue(objectInstance, objectPool, null);
+        IPoolableObject objectInstance = (IPoolableObject)Instantiate(blueprintClass.gameObject).GetComponent<T>();
+        objectInstance.SetObjectPool(objectPool);
         return (IPoolableObject)objectInstance;
     }
 
