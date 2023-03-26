@@ -16,21 +16,17 @@ public class CreateAbility : MonoBehaviour, IPerformAbility
 
     private void Start()
     {
-        CheckIfUsesPool();
+        InitializePool();
     }
 
-    private void CheckIfUsesPool()
+    // Pool management could be moved 
+    private void InitializePool()
     {
         if (abilityList.selectedAbility.UsePooling)
         {
-            InitializePool();
+            pool = FindOrCreatePool();
+            Pool<Ability>.poolList.Add(pool);
         }
-    }
-
-    private void InitializePool()
-    {
-        pool = FindOrCreatePool();
-        Pool<Ability>.poolList.Add(pool);
     }
 
     private Pool<Ability> FindOrCreatePool()
@@ -48,7 +44,7 @@ public class CreateAbility : MonoBehaviour, IPerformAbility
     public void SwitchAbility()
     {
         abilityList.NextAbility();
-        CheckIfUsesPool();
+        InitializePool();
     }
 
     public void PerformAbility(Vector3 target)
