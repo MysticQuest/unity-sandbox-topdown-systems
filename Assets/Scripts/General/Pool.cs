@@ -18,9 +18,14 @@ public class Pool<T> : UnityEngine.Object
     {
         this.blueprintClass = blueprintClass;
 
-        objectPool = new ObjectPool<IPoolableObject>(CreateIPoolableObject,
-            OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
-            blueprintClass.CheckPool, blueprintClass.DefaultCapacity, blueprintClass.MaxSize);
+        objectPool = new ObjectPool<IPoolableObject>(
+            CreateIPoolableObject,
+            OnGetFromPool, 
+            OnReleaseToPool, 
+            OnDestroyPooledObject,
+            blueprintClass.CheckPool, 
+            blueprintClass.DefaultCapacity, 
+            blueprintClass.MaxSize);
     }
 
     private IPoolableObject CreateIPoolableObject()
@@ -40,25 +45,11 @@ public class Pool<T> : UnityEngine.Object
     private void OnGetFromPool(IPoolableObject pooledObject)
     {
         pooledObject.gameObject.SetActive(true);
-        if (blueprintClass.Lifespan != 0) { DeactivatePooledObject((MonoBehaviour)pooledObject); }
     }
 
     // invoked when we exceed the maximum number of pooled items (i.e. destroy the pooled object)
     private void OnDestroyPooledObject(IPoolableObject pooledObject)
     {
         Destroy(pooledObject.gameObject);
-    }
-
-    // Invoked on acquisition for pool, if there is a set lifespan
-    public void DeactivatePooledObject(MonoBehaviour pooledObject)
-    {
-        pooledObject.StartCoroutine(DeactivateRoutine((IPoolableObject)pooledObject));
-    }
-
-    IEnumerator DeactivateRoutine(IPoolableObject pooledObject)
-    {
-        yield return new WaitForSeconds(pooledObject.Lifespan);
-        pooledObject.gameObject.transform.position = Vector3.zero;
-        objectPool.Release(pooledObject);
     }
 }

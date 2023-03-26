@@ -102,7 +102,7 @@ MonoBehaviour:
   checkPool: 1
   defaultCapacity: 5
   maxSize: 12
-  lifespan: 2
+  lifespan: 3
   manaCost: 0
 --- !u!114 &-259778481958379410
 MonoBehaviour:

@@ -39,15 +39,15 @@ public abstract class Ability : MonoBehaviour, IPoolableObject
         Debug.Log("Category: Ability");
     }
 
-    //public void Deactivate()
-    //{
-    //    StartCoroutine(DeactivateRoutine(lifespan));
-    //}
+    public void Deactivate()
+    {
+        StartCoroutine(DeactivateRoutine(lifespan));
+    }
 
-    //IEnumerator DeactivateRoutine(float delay)
-    //{
-    //    yield return new WaitForSeconds(delay);
-    //    transform.position = Vector3.zero;
-    //    objectPool.Release(this);
-    //}
+    IEnumerator DeactivateRoutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        transform.position = Vector3.zero;
+        objectPool.Release(this);
+    }
 }
