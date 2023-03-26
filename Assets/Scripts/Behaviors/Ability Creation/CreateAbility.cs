@@ -60,7 +60,7 @@ public class CreateAbility : MonoBehaviour, IPerformAbility
                 ability.gameObject.transform.position = spawnPoint.position;
                 Vector3 shootDir = (target - spawnPoint.position).normalized;
                 ability.Setup(shootDir);
-                ability.Deactivate();
+                //ability.Deactivate();
             }
             else
             {

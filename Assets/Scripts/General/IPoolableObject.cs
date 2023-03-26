@@ -9,6 +9,7 @@ public interface IPoolableObject
     bool CheckPool { get; }
     int DefaultCapacity { get; }
     int MaxSize { get; }
+    float Lifespan { get; }
 
     void SetObjectPool(IObjectPool<IPoolableObject> pool);
 }

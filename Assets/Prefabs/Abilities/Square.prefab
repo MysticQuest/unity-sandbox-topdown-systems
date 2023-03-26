@@ -99,8 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usePooling: 1
-  manaCost: 0
+  checkPool: 1
+  defaultCapacity: 5
+  maxSize: 12
   lifespan: 2
+  manaCost: 0
 --- !u!114 &-259778481958379410
 MonoBehaviour:
   m_ObjectHideFlags: 0
