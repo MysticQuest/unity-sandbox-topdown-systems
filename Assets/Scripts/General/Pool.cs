@@ -9,9 +9,6 @@ public class Pool<T> : UnityEngine.Object
 {
     public static List<Pool<T>> poolList = new();
     public IObjectPool<IPoolableObject> objectPool { get; private set; }
-    [SerializeField] private bool checkPool = true;
-    [SerializeField] private int defaultCapacity = 3;
-    [SerializeField] private int maxSize = 6;
 
     private IPoolableObject blueprintClass;
     public IPoolableObject GetBlueprint() { return blueprintClass; }
