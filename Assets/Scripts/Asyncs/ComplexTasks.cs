@@ -6,10 +6,10 @@ public class ComplexTasks : MonoBehaviour
 {
     private void Awake()
     {
-        RunTasks();
+        Task.Run(() => RunTasks());
     }
 
-    public async void RunTasks()
+    public async Task RunTasks()
     {
         Debug.Log("Starting tasks...");
         Task[] tasks = new Task[5];
