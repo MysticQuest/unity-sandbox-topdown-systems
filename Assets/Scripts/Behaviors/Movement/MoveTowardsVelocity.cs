@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[DisallowMultipleComponent]
 public class MoveTowardsVelocity : MoveVelocity, IMoveVector
 {
     public override void SetVector(Vector3 direction)

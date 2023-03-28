@@ -201,8 +201,8 @@ GameObject:
   - component: {fileID: 7703920176158372181}
   - component: {fileID: 4988583264587800912}
   - component: {fileID: 691084130159241243}
-  - component: {fileID: 4430732192264254023}
   - component: {fileID: 3885363707492099165}
+  - component: {fileID: 5809319965762593766}
   - component: {fileID: 5338066376063879370}
   - component: {fileID: 2139269342}
   m_Layer: 8
@@ -360,9 +360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 5338066375982290992}
-  checkPool: 1
-  defaultCapacity: 3
-  maxSize: 6
 --- !u!114 &691084130159241243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,19 +373,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseObject: {fileID: 579268875313626293}
---- !u!114 &4430732192264254023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5338066376063879361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9d68f2ffe56f6844b58130dd5aee52d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!114 &3885363707492099165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +387,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectThatShoots: {fileID: 5338066375982290992}
   shootTool: {fileID: 5338066376293641582}
+--- !u!114 &5809319965762593766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5338066376063879361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d68f2ffe56f6844b58130dd5aee52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!114 &5338066376063879370
 MonoBehaviour:
   m_ObjectHideFlags: 0

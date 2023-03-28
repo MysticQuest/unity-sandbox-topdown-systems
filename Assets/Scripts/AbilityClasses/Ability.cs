@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+[DisallowMultipleComponent]
 public abstract class Ability : MonoBehaviour, IPoolableObject
 {
     [Header ("Pooling Options")]
