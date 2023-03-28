@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public abstract class MoveVelocity : MonoBehaviour, IMoveVector
 {
     [SerializeField] protected float moveSpeed = 5f;
