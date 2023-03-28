@@ -31,14 +31,8 @@ public class CreateAbility : MonoBehaviour, IPerformAbility
 
     private Pool<Ability> FindOrCreatePool()
     {
-        foreach (Pool<Ability> poolInstance in Pool<Ability>.poolList)
-        {
-            if ((Object)poolInstance.GetBlueprint() == abilityList.selectedAbility)
-            {
-                return poolInstance;  
-            }
-        }
-        return new Pool<Ability>(abilityList.selectedAbility);
+        Pool<Ability> poolInstance = Pool<Ability>.poolList.Find(x => (Object)x.GetBlueprint() == abilityList.selectedAbility);
+        return poolInstance ?? new Pool<Ability>(abilityList.selectedAbility);
     }
 
     public void SwitchAbility()
