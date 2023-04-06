@@ -14,18 +14,12 @@ public class CreateAbility : MonoBehaviour, IPerformAbility
         abilityList = GetComponent<AbilityList>();
     }
 
-    private void Start()
-    {
-        InitializePool();
-    }
-
     // Pool management could be moved 
     private void InitializePool()
     {
         if (abilityList.selectedAbility.UsePooling)
         {
             pool = FindOrCreatePool();
-            Pool<Ability>.poolList.Add(pool);
         }
     }
 
@@ -43,6 +37,7 @@ public class CreateAbility : MonoBehaviour, IPerformAbility
 
     public void PerformAbility(Vector3 target)
     {
+        if (!pool) { InitializePool(); }
 
         if (abilityList.selectedAbility.UsePooling)
         {

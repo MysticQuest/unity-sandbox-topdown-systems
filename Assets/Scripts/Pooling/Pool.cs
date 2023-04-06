@@ -9,6 +9,8 @@ using UnityEngine.Pool;
 public class Pool<T> : UnityEngine.Object
 {
     public static List<Pool<T>> poolList = new();
+    private GameObject poolContainerObject;
+
     public IObjectPool<IPoolableObject> objectPool { get; private set; }
 
     private IPoolableObject blueprintClass;
@@ -17,6 +19,9 @@ public class Pool<T> : UnityEngine.Object
     public Pool(IPoolableObject blueprintClass)
     {
         this.blueprintClass = blueprintClass;
+
+        poolList.Add(this);
+        poolContainerObject = new GameObject("Pool" + poolList.Count);
 
         objectPool = new ObjectPool<IPoolableObject>(
             CreateIPoolableObject,
@@ -31,6 +36,7 @@ public class Pool<T> : UnityEngine.Object
     private IPoolableObject CreateIPoolableObject()
     {
         IPoolableObject objectInstance = (IPoolableObject)Instantiate(blueprintClass.gameObject).GetComponent<T>();
+        objectInstance.gameObject.transform.SetParent(poolContainerObject.transform, true);
         objectInstance.SetObjectPool(objectPool);
         return (IPoolableObject)objectInstance;
     }
